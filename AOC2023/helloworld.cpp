@@ -1,41 +1,42 @@
 #include <iostream>
-#include <string>
+#include <string> // incluedes find and rfind
 #include <fstream>
 #include <vector>
-#include <algorithm>
 #include <map>
 
 
 using std::string;
-using std::cout;
+using std::cout;    
 using std::cin;
 using std::vector;
 
-namespace day1q1 {
-    void main(const string& filename) {
-        // open file
+namespace day1 {
+    int findTotal(const string& filename) {
+        // open file using ifstream
         string line{};
         std::ifstream myfile(filename);
+
+        // sums the total for each line
+        int total_calibration{};
+
         // read one line each
-        //  
-        [[maybe_unused]] int total_calibration{};
         while (std::getline(myfile, line)) {
+            // find all the nums in the string
             vector<int> nums{};
             for (char c : line) {
                 if (isdigit(c)) {
+                    // converts char to int value
                     nums.push_back(c - '0');
                 }
             }
+            // get the first and last value
             int calibrationValue = nums[0] * 10 + nums[nums.size() - 1];
-            //cout << calibrationValue << "\n";
             total_calibration += calibrationValue;
         }
-        cout << total_calibration;
-        
+        return total_calibration;
     }
-}
-namespace day1q2 {
-    std::pair<int, int> findFirstAndLastInt(const string& s) {
+
+    std::pair<int, int> findIndexOfFirstAndLastInt(const string& s) {
         int first{};
         int last{};
         for (int i = 0; i < s.size(); i++) {
@@ -54,27 +55,27 @@ namespace day1q2 {
         return std::make_pair(first, last);
     }
 
-    void main(const string& filename) {
-        const std::map<string, int> words = { {"one", 1}, {"two", 2}, {"three", 3}, {"four", 4}, {"five", 5}, {"six", 6}, {"seven",7}, {"eight",8}, {"nine",9} };
+    int findTotalWithWords(const string& filename) {
+        const std::map<string, int> wordsToInt = { {"one", 1}, {"two", 2}, {"three", 3}, {"four", 4}, {"five", 5}, {"six", 6}, {"seven",7}, {"eight",8}, {"nine",9} };
 
         // open file
         string line{};
         std::ifstream myfile(filename);
-        [[maybe_unused]] int total_calibration{};
+        int total_calibration{};
 
         while (std::getline(myfile, line)) {
-            [[maybe_unused]] int first{};
-            [[maybe_unused]] int last{};
-            [[maybe_unused]] int first_index{};
-            [[maybe_unused]] int last_index{};
+            int first{};
+            int last{};
+            int first_index{};
+            int last_index{};
 
-            auto [a, b] = findFirstAndLastInt(line);
+            auto [a, b] = findIndexOfFirstAndLastInt(line);
 			first_index = a;
 			last_index = b;
 			first = line[first_index] - '0';
 			last = line[last_index] - '0';
 
-            for (const auto& [key, num] : words) {
+            for (const auto& [key, num] : wordsToInt) {
                 int index = static_cast<int>(line.find(key));
                 if (index < 0) { continue; }
                 if (index < first_index) {
@@ -91,20 +92,22 @@ namespace day1q2 {
             total_calibration += first * 10 + last;
 
         }
-        cout << total_calibration;
+        return total_calibration;
+    }
+    void main() {
+		string filename = "day1q1.txt";
+		//string filename = "test.txt";
+
+		cout << findTotal(filename);
+		cout << " ";
+		cout << findTotalWithWords(filename);
+        // 53921 54676
+
     }
 }
 
 int main()
 {
-    string filename = "day1q1.txt";
-    //string filename = "test.txt";
-    day1q1::main(filename);
-    cout << " ";
-    day1q2::main(filename);
-
-    string teststring = "6shgbprkpbksnfourfivemvncvg2eight";
-    std::pair<int, int> a = day1q2::findFirstAndLastInt(teststring);
-    cout << " " << a.first << " " << a.second;
+    day1::main();
 }
 
