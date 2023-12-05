@@ -54,43 +54,40 @@ namespace day1 {
         }
         return std::make_pair(first, last);
     }
+    int findTotalForLine(const string& line) {
+
+		auto [a, b] = findIndexOfFirstAndLastInt(line);
+		int first_index = a;
+		int last_index = b;
+		int firstInt = line[first_index] - '0';
+		int lastInt = line[last_index] - '0';
+
+		const std::map<string, int> wordsToInt = { {"one", 1}, {"two", 2}, {"three", 3}, {"four", 4}, {"five", 5}, {"six", 6}, {"seven",7}, {"eight",8}, {"nine",9} };
+		for (const auto& [key, num] : wordsToInt) {
+			int index = static_cast<int>(line.find(key));
+			if (index < 0) { continue; }
+			if (index < first_index) {
+				first_index = index;
+				firstInt = num;
+			}
+			int rIndex = static_cast<int>(line.rfind(key));
+			if (rIndex < 0) { continue; }
+			if (rIndex > last_index) {
+				last_index = rIndex;
+				lastInt = num;
+			}
+		}
+		return firstInt * 10 + lastInt;
+    }
 
     int findTotalWithWords(const string& filename) {
-        const std::map<string, int> wordsToInt = { {"one", 1}, {"two", 2}, {"three", 3}, {"four", 4}, {"five", 5}, {"six", 6}, {"seven",7}, {"eight",8}, {"nine",9} };
-
         // open file
         string line{};
         std::ifstream myfile(filename);
         int total_calibration{};
 
         while (std::getline(myfile, line)) {
-            int first{};
-            int last{};
-            int first_index{};
-            int last_index{};
-
-            auto [a, b] = findIndexOfFirstAndLastInt(line);
-			first_index = a;
-			last_index = b;
-			first = line[first_index] - '0';
-			last = line[last_index] - '0';
-
-            for (const auto& [key, num] : wordsToInt) {
-                int index = static_cast<int>(line.find(key));
-                if (index < 0) { continue; }
-                if (index < first_index) {
-                    first_index = index;
-                    first = num;
-                }
-                int rIndex = static_cast<int>(line.rfind(key));
-                if (rIndex < 0) { continue; }
-                if (rIndex > last_index) {
-                    last_index = rIndex;
-                    last = num;
-                }
-            }
-            total_calibration += first * 10 + last;
-
+            total_calibration += findTotalForLine(line);
         }
         return total_calibration;
     }
@@ -101,7 +98,7 @@ namespace day1 {
 		cout << findTotal(filename);
 		cout << " ";
 		cout << findTotalWithWords(filename);
-        // 53921 54676
+        // 53921 54676 are the answers
 
     }
 }
