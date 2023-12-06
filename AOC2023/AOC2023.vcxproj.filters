@@ -15,7 +15,16 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="helloworld.cpp">
+    <ClCompile Include="aocMain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="day2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="day3.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="day1.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -23,8 +32,30 @@
     <Text Include="day1q1.txt">
       <Filter>Resource Files</Filter>
     </Text>
-    <Text Include="test.txt">
+    <Text Include="day1test.txt">
       <Filter>Resource Files</Filter>
     </Text>
+    <Text Include="day2.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="day2test.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="day3.txt" />
+    <Text Include="day3test.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="day2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="day3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="day1.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

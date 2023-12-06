@@ -133,11 +133,24 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="helloworld.cpp" />
+    <ClCompile Include="day1.cpp" />
+    <ClCompile Include="day2.cpp" />
+    <ClCompile Include="day3.cpp" />
+    <ClCompile Include="aocMain.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="day1q1.txt" />
-    <Text Include="test.txt" />
+    <Text Include="day2.txt" />
+    <Text Include="day2test.txt" />
+    <Text Include="day1test.txt" />
+    <Text Include="day3.txt" />
+    <Text Include="day3test.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="day1.h" />
+    <ClInclude Include="day2.h" />
+    <ClInclude Include="day3.h" />
+    <ClInclude Include="include.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
