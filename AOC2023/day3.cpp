@@ -113,18 +113,98 @@ namespace day3 {
 
 		part1impl("day3test.txt");
 	}
+	bool isIndexValid(const vector<vector<char>>& arr, int lineNumber, int charNumber) {
+		if (lineNumber < 0 || lineNumber >= arr.size())
+			return false;
+		if (charNumber < 0 || charNumber >= arr[0].size())
+			return false;
+		return true;
+	}
+
+
+	
+	void findGears(const vector<vector<char>>& arr, int lineNum, int numStart, int numEnd, int num, map<std::pair<int, int>, vector<int>>& gearsToNumsAround) {
+		// test above
+		for (int i = numStart - 1; i <= numEnd + 1; ++i) {
+			if (isIndexValid(arr, lineNum - 1, i) && arr[lineNum - 1][i] == '*')
+				gearsToNumsAround[std::pair(lineNum - 1, i)].push_back(num);
+		}
+
+		// test left
+		if (isIndexValid(arr, lineNum, numStart - 1) && arr[lineNum][numStart -1] == '*')
+			gearsToNumsAround[std::pair(lineNum, numStart -1)].push_back(num);
+
+
+		// test right
+		if (isIndexValid(arr, lineNum, numEnd + 1) && arr[lineNum][numEnd + 1] == '*')
+			gearsToNumsAround[std::pair(lineNum, numEnd + 1)].push_back(num);
+
+		// testBelow 
+		for (int i = numStart - 1; i <= numEnd + 1; ++i) {
+			if (isIndexValid(arr, lineNum + 1, i) && arr[lineNum + 1][i] == '*')
+				gearsToNumsAround[std::pair(lineNum + 1, i)].push_back(num);
+		}
+	}
 	int part2impl(string input) {
-		return 0;
+		vector<vector<char>> arr = get2DArray(input);
+		map<std::pair<int, int>, vector<int>> gearsToNumsAround{};
+
+		long totalSum{};
+
+		// iterate over each line
+		for (int i = 0; i < arr.size(); ++i) {
+			int startOfNum = -1;
+			int endOfNum{};
+			int num{};
+			// find the numbers in the line
+			for (int j = 0; j < arr[0].size(); ++j) {
+				if (isdigit(arr[i][j])) {
+					if (startOfNum == -1) {
+						startOfNum = j;
+						endOfNum = j; // this accounts for single digits
+						num = arr[i][j] - '0';
+					}
+					else
+					{
+						endOfNum = j;
+						num = num * 10 + (arr[i][j] - '0');
+					}
+				}
+				// need to process number at end of line as well
+				if (ispunct(arr[i][j]) || (j == arr[0].size() - 1)) {
+					if (startOfNum == -1)
+						continue;
+					
+					// find all the gears around that number so that we can check if a gear has two neighbours
+					findGears(arr, i, startOfNum, endOfNum, num, gearsToNumsAround); 
+					startOfNum = -1;
+					endOfNum = -1;
+					num = 0;
+
+				}
+
+			}
+
+		}
+
+		
+		for (const auto& [location, intsAroundGear] : gearsToNumsAround) {
+			if (intsAroundGear.size() == 2) {
+				totalSum += intsAroundGear[0] * intsAroundGear[1];
+			}
+		}
+		return totalSum;
 	}
 	void part2() {
 
 		int result = part2impl("day3test.txt");
 		cout << (result == 467835 ? "PASS" : "FAIL") << "\n";
 
+		cout << part2impl("day3.txt") << "\n";
 
 	}
 	void main() {
-		part1();
+		//part1();
 		part2();
 	}
 }
