@@ -5,8 +5,8 @@
 
 int main()
 {
-	day1::main();
+	//day1::main();
 	//day2::main();
-    //day3::main();
+    day3::main();
 }
 

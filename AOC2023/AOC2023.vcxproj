@@ -139,11 +139,12 @@
     <ClCompile Include="aocMain.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="day1q1.txt" />
+    <Text Include="day1.txt" />
     <Text Include="day2.txt" />
     <Text Include="day2test.txt" />
     <Text Include="day1test.txt" />
     <Text Include="day3.txt" />
+    <Text Include="day3mytest.txt" />
     <Text Include="day3test.txt" />
   </ItemGroup>
   <ItemGroup>

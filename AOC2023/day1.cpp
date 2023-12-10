@@ -83,7 +83,7 @@ namespace day1 {
 		return total_calibration;
 	}
 	void main() {
-		string filename = "day1q1.txt";
+		string filename = "day1.txt";
 		//string filename = "test.txt";
 
 		cout << findTotal(filename);

@@ -9,7 +9,10 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
     </Filter>
-    <Filter Include="Resource Files">
+    <Filter Include="test inputs">
+      <UniqueIdentifier>{65e0fac9-8d74-4420-bc0d-94f1b101c243}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="main inputs">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
@@ -21,28 +24,35 @@
     <ClCompile Include="day2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="day3.cpp">
+    <ClCompile Include="day1.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="day1.cpp">
+    <ClCompile Include="day3.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="day1q1.txt">
-      <Filter>Resource Files</Filter>
-    </Text>
-    <Text Include="day1test.txt">
-      <Filter>Resource Files</Filter>
+    <Text Include="day1.txt">
+      <Filter>main inputs</Filter>
     </Text>
     <Text Include="day2.txt">
-      <Filter>Resource Files</Filter>
+      <Filter>main inputs</Filter>
+    </Text>
+    <Text Include="day1test.txt">
+      <Filter>test inputs</Filter>
     </Text>
     <Text Include="day2test.txt">
-      <Filter>Resource Files</Filter>
+      <Filter>test inputs</Filter>
     </Text>
-    <Text Include="day3.txt" />
-    <Text Include="day3test.txt" />
+    <Text Include="day3.txt">
+      <Filter>main inputs</Filter>
+    </Text>
+    <Text Include="day3test.txt">
+      <Filter>test inputs</Filter>
+    </Text>
+    <Text Include="day3mytest.txt">
+      <Filter>test inputs</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include.h">
