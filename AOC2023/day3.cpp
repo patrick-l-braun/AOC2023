@@ -46,24 +46,22 @@ namespace day3 {
 		}
 		return false;
 	}
-	void main() {
-		string input = "day3.txt";
+	int part1impl(string input) {
 		vector<vector<char>> arr = get2DArray(input);
-
-		cout << "501 763 331 161 683 980\n";
-		cout << "948 633 990\n";
 
 		int totalSum{};
 
+		// iterate over each line
 		for (int i = 0; i < arr.size(); ++i) {
 			int startOfNum = -1;
 			int endOfNum{};
 			int num{};
+			// find the numbers in the line
 			for (int j = 0; j < arr[0].size(); ++j) {
 				if (isdigit(arr[i][j])){
 					if (startOfNum == -1) {
 						startOfNum = j;
-						endOfNum = j;
+						endOfNum = j; // this accounts for single digits
 						num = arr[i][j] - '0';
 					}
 					else
@@ -72,12 +70,13 @@ namespace day3 {
 						num = num * 10 + (arr[i][j] - '0');
 					}
 				}
+				// need to process number at end of line as well
 				if (ispunct(arr[i][j]) || (j == arr[0].size() - 1)) {
 					if (startOfNum == -1)
 						continue;
+					// check if the number has punctuation around
 					if (hasPunctAround(arr, i, startOfNum, endOfNum)) {
 						totalSum += num; 
-						cout << num << " ";
 					}
 					startOfNum = -1;
 					endOfNum = -1;
@@ -86,7 +85,6 @@ namespace day3 {
 				}
 
 			}
-			cout << "\n";
 
 		}
 		
@@ -107,8 +105,26 @@ namespace day3 {
 			cout << hasPunctAround(arr, 0, 0, 2) << " should be true\n";
 			cout << hasPunctAround(arr, 0, 5, 7) << " should be false\n";
 		}
-
 		cout << "\n" << totalSum << "\n";
+		return totalSum;
+	}
+	void part1() {
+		part1impl("day3.txt");
 
+		part1impl("day3test.txt");
+	}
+	int part2impl(string input) {
+		return 0;
+	}
+	void part2() {
+
+		int result = part2impl("day3test.txt");
+		cout << (result == 467835 ? "PASS" : "FAIL") << "\n";
+
+
+	}
+	void main() {
+		part1();
+		part2();
 	}
 }
