@@ -137,6 +137,8 @@
     <ClCompile Include="day2.cpp" />
     <ClCompile Include="day3.cpp" />
     <ClCompile Include="aocMain.cpp" />
+    <ClCompile Include="day4.cpp" />
+    <ClCompile Include="utils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="day1.txt" />
@@ -146,12 +148,16 @@
     <Text Include="day3.txt" />
     <Text Include="day3mytest.txt" />
     <Text Include="day3test.txt" />
+    <Text Include="day4.txt" />
+    <Text Include="day4test.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="day1.h" />
     <ClInclude Include="day2.h" />
     <ClInclude Include="day3.h" />
+    <ClInclude Include="day4.h" />
     <ClInclude Include="include.h" />
+    <ClInclude Include="utils.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\README.md" />

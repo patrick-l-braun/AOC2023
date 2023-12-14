@@ -9,12 +9,12 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
     </Filter>
-    <Filter Include="test inputs">
-      <UniqueIdentifier>{65e0fac9-8d74-4420-bc0d-94f1b101c243}</UniqueIdentifier>
-    </Filter>
     <Filter Include="main inputs">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="test inputs">
+      <UniqueIdentifier>{65e0fac9-8d74-4420-bc0d-94f1b101c243}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -28,6 +28,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="day3.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="day4.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="utils.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -53,6 +59,12 @@
     <Text Include="day3mytest.txt">
       <Filter>test inputs</Filter>
     </Text>
+    <Text Include="day4test.txt">
+      <Filter>test inputs</Filter>
+    </Text>
+    <Text Include="day4.txt">
+      <Filter>main inputs</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include.h">
@@ -67,5 +79,14 @@
     <ClInclude Include="day1.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="day4.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="utils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\README.md" />
   </ItemGroup>
 </Project>
