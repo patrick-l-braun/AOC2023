@@ -1,13 +1,13 @@
 #pragma once
 #include <iostream>
-#include <sstream>
+#include <sstream> // stringstream
 #include <string> // incluedes find and rfind
 #include <fstream>
 #include <vector>
 #include <map>
 #include <set>
-#include <utility>
-#include <cmath>
+#include <utility> // pair
+#include <cmath> // max
 
 using std::string;
 using std::cout;    

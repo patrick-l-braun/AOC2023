@@ -1,5 +1,4 @@
 #include "day4.h"
-#include "utils.h"
 namespace day4 {
 
 	using utils::split;

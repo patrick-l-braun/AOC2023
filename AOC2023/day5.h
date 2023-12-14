@@ -1,6 +1,5 @@
 #pragma once
 #include "utils.h"
-
-namespace day2 {
+namespace day5 {
 	void main();
 }
