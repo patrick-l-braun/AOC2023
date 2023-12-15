@@ -1,43 +1,45 @@
 #include "day5.h"
 
 namespace day5 {
-	using utils::convertToInts;
+	using ll = long long;
+	using utils::convertToLl;
 	using utils::split;
 	using utils::print;
-	int part1(const string& filename) {
+	ll part1(const string& filename) {
 		vector<string> lines = utils::getLines(filename);
 		print(lines);
-		vector<int> seedNumbers = convertToInts(split(split(lines[0], ':')[1]));
+		vector<ll> seedNumbers = convertToLl(split(split(lines[0], ':')[1]));
 		print(seedNumbers);
 
-		constexpr int numberOfMaps = 7;
-		vector<map<int, int>> maps(numberOfMaps);
+		constexpr ll numberOfMaps = 7;
+		vector<map<ll, ll>> maps(numberOfMaps);
 
-		int mapCounter = -1;
+		ll mapCounter = -1;
 		for (const auto& line : lines) {
 			if (line == "" || line.find("seeds:") != -1)
 				continue;
 			if (line[line.size() - 1] == ':') {
 				++mapCounter;
+				cout << mapCounter << "\n";
 				continue;
 			}
 
-			vector<int> nums = convertToInts(split(line));
-			int sourceRangeStart = nums[1];
-			int rangeLength = nums[2];
-			int destinationRangeStart = nums[0];
+			vector<ll> nums = convertToLl(split(line));
+			ll sourceRangeStart = nums[1];
+			ll rangeLength = nums[2];
+			ll destinationRangeStart = nums[0];
 
 			// find the mapping
-			for (int i = sourceRangeStart; i < sourceRangeStart + rangeLength; ++i) {
+			for (ll i = sourceRangeStart; i < sourceRangeStart + rangeLength; ++i) {
 				maps[mapCounter][i] = i - sourceRangeStart + destinationRangeStart;
 			}
 		}
 
-		int closestLocation = std::numeric_limits<int>::max();
-		for (int num : seedNumbers) {
-			int current = num;
+		ll closestLocation = std::numeric_limits<ll>::max();
+		for (ll num : seedNumbers) {
+			ll current = num;
 			cout << num << " ";
-			for (int i = 0; i < numberOfMaps; ++i) {
+			for (ll i = 0; i < numberOfMaps; ++i) {
 				if (maps[i].find(current) != maps[i].end())
 					current = maps[i][current];
 				cout << " -> " << current;
@@ -56,7 +58,8 @@ namespace day5 {
 		return closestLocation;
 	}
 	void main() {
-		int answer = part1("day5test.txt");
+		cout << sizeof(ll) << "\n";
+		ll answer = part1("day5.txt");
 		cout << answer << " " << (answer == 35 ? "PASS" : "FAIL") << "\n";
 	}
 }

@@ -35,4 +35,11 @@ namespace utils {
 		}
 		return vec;
 	}
+	vector<long long> convertToLl(const vector<string>& a) {
+		vector<long long> vec;
+		for (const auto& s : a) {
+			vec.push_back(stoll(s));
+		}
+		return vec;
+	}
 }
