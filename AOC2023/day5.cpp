@@ -5,16 +5,48 @@ namespace day5 {
 	using utils::convertToLl;
 	using utils::split;
 	using utils::print;
+	constexpr int numberOfMaps = 7;
+
+	struct Mapping {
+		ll destinationRangeStart{};
+		ll sourceRangeStart{};
+		ll rangeLength{};
+	};
+	class ConvertMapping {
+	public:
+		ConvertMapping(){
+			maps = vector<vector<Mapping>>(numberOfMaps);
+		}
+
+		// turns each line into a mapping (uses aggregate initialiser)
+		void addLine(int mappingNumber, const string& line) {
+			vector<ll> nums = convertToLl(split(line));
+			maps[mappingNumber].push_back({ nums[0], nums[1], nums[2] });
+		}
+		
+		// Converts a number based on a mapping
+		ll convert(int mappingNumber, ll number) {
+			for (const Mapping& map : maps[mappingNumber]) {
+				// check if the mapping applies
+				if (number > map.sourceRangeStart && number < map.sourceRangeStart + map.rangeLength)
+					//convert
+					return number - map.sourceRangeStart + map.destinationRangeStart;
+			}
+			return number;
+		}
+	private:
+		vector<vector<Mapping>> maps;
+	};
+
 	ll part1(const string& filename) {
 		vector<string> lines = utils::getLines(filename);
 		print(lines);
 		vector<ll> seedNumbers = convertToLl(split(split(lines[0], ':')[1]));
 		print(seedNumbers);
 
-		constexpr ll numberOfMaps = 7;
-		vector<map<ll, ll>> maps(numberOfMaps);
+		ConvertMapping converter;
 
-		ll mapCounter = -1;
+		int mapCounter = -1;
 		for (const auto& line : lines) {
 			if (line == "" || line.find("seeds:") != -1)
 				continue;
@@ -23,43 +55,27 @@ namespace day5 {
 				cout << mapCounter << "\n";
 				continue;
 			}
-
-			vector<ll> nums = convertToLl(split(line));
-			ll sourceRangeStart = nums[1];
-			ll rangeLength = nums[2];
-			ll destinationRangeStart = nums[0];
-
-			// find the mapping
-			for (ll i = sourceRangeStart; i < sourceRangeStart + rangeLength; ++i) {
-				maps[mapCounter][i] = i - sourceRangeStart + destinationRangeStart;
-			}
+			converter.addLine(mapCounter, line);
 		}
 
 		ll closestLocation = std::numeric_limits<ll>::max();
 		for (ll num : seedNumbers) {
 			ll current = num;
 			cout << num << " ";
-			for (ll i = 0; i < numberOfMaps; ++i) {
-				if (maps[i].find(current) != maps[i].end())
-					current = maps[i][current];
+			for (int i = 0; i < numberOfMaps; ++i) {
+				current = converter.convert(i, current);
 				cout << " -> " << current;
-				// else we keep it unchanged
 			}
 			cout << "\n";
 			closestLocation = std::min(closestLocation, current);
 		}
-		//for (auto m : maps) {
-		//	print(m);
-		//}
-
-
-
-
 		return closestLocation;
 	}
 	void main() {
-		cout << sizeof(ll) << "\n";
-		ll answer = part1("day5.txt");
+		ll answer = part1("day5test.txt");
 		cout << answer << " " << (answer == 35 ? "PASS" : "FAIL") << "\n";
+
+		ll answerForMain = part1("day5.txt");
+		cout << answerForMain << "\n";
 	}
 }
